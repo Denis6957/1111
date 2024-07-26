@@ -30,7 +30,7 @@ test('User can log in and add a product with a photo', async t => {
     const successMessage = Selector('#wrapper div').withText('×').nth(6);
 
     // Path to the image file
-    const filePath = 'C:\\Users\\Admin\\Downloads\\Screenshot_97.png';
+    const filePath = 'C:\\Users\\Professional\\Downloads\\Огурцы.png';
 
     // Selector for an element on the main page after login
     const mainPageElement = Selector('#wrapper');
