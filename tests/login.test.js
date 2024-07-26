@@ -10,10 +10,11 @@ test('User can log in with valid credentials', async t => {
     // Selectors for login page
     const emailInput = Selector('input[name="login"]');
     const passwordInput = Selector('input[name="password"]');
-    const loginButton = Selector('[class=footer text-center]').hasChildElements('button');
-    
+    // Уточненный селектор для кнопки входа
+    const loginButton = Selector('button').withText('Вход').withAttribute('type', 'button');
+
     // Selector for an element on the main page after login
-    const mainPageElement = Selector('[id=wrapper]'); // Update this selector if needed
+    const mainPageElement = Selector('#wrapper'); // Update this selector if needed
 
     // Wait for login elements to appear
     await t
@@ -27,12 +28,13 @@ test('User can log in with valid credentials', async t => {
         .typeText(passwordInput, 'pass1234');
 
     // Add a delay before clicking the login button
-    await t.wait(4000); // Delay of 2000 milliseconds (2 seconds)
+    await t.wait(4000); // Delay of 4000 milliseconds (4 seconds)
 
     // Click the login button
     await t
-        .click(loginButton);
-        await t.wait(2000);
+        .click(loginButton)
+        .wait(2000);
+
     // Wait for main page element to appear
     await t
         .expect(mainPageElement.exists).ok('Main page element not found after login');

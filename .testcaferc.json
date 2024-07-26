@@ -1,0 +1,19 @@
+{
+  "reporter": [
+    {
+      "name": "json",
+      "output": "reports/report.json"
+    }
+  ],
+  "screenshotPath": "./screenshots",
+  "screenshotPathPattern": "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png",
+  "takeScreenshotsOnFails": true,
+  "windowSize": "1920x1080",
+  "concurrency": 1,
+  "selectorTimeout": 10000,
+  "assertionTimeout": 3000,
+  "pageLoadTimeout": 3000,
+  "skipJsErrors": false,
+  "skipUncaughtErrors": false,
+  "speed": 1
+}

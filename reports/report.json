@@ -1,0 +1,31 @@
+{
+  "startTime": "2024-07-26T09:48:02.824Z",
+  "endTime": "2024-07-26T09:48:09.098Z",
+  "userAgents": [
+    "Chrome 126.0.0.0 / Windows 10"
+  ],
+  "passed": 0,
+  "total": 1,
+  "skipped": 0,
+  "fixtures": [
+    {
+      "name": "Login Page",
+      "path": "C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js",
+      "meta": {},
+      "tests": [
+        {
+          "name": "Test registration user on eDA-platform",
+          "meta": {},
+          "errs": [
+            "AssertionError: No elements on page: expected false to be truthy\n\nBrowser: Chrome 126.0.0.0 / Windows 10\n\n   22 |\n   23 |// Set const succes registration\n   24 |    const Succes = Selector('alert-succes');\n   25 |\n   26 |await t \n > 27 |    .expect(inputNameCompany.exists).ok('No elements on page');\n   28 |\n   29 |// Write registration data\n   30 |    typeText(inputNameCompany, 'New Company')\n   31 |    typeText(inputCityCompany, 'Novokuznetsk')\n   32 |    typeText(inputINN, '11111111')\n\n   at <anonymous> (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:27:38)\n   at asyncGeneratorStep (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:1:37)\n   at _next (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:1:37)\n   at <anonymous> (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:1:37)\n   at <anonymous> (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:1:37)\n   at <anonymous> (C:\\Users\\Admin\\Desktop\\testcafe-project\\tests\\registation.test.js:48:2)"
+          ],
+          "durationMs": 5918,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
