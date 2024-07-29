@@ -1,6 +1,6 @@
 {
-  "startTime": "2024-07-26T18:01:29.373Z",
-  "endTime": "2024-07-26T18:02:07.198Z",
+  "startTime": "2024-07-29T09:08:43.421Z",
+  "endTime": "2024-07-29T09:09:08.949Z",
   "userAgents": [
     "Chrome 126.0.0.0 / Windows 10"
   ],
@@ -10,14 +10,14 @@
   "fixtures": [
     {
       "name": "Login Page",
-      "path": "C:\\Users\\Professional\\Desktop\\1111\\tests\\deleteproduct.test.js",
+      "path": "C:\\Users\\Admin\\Desktop\\PROJECT\\1111\\tests\\addproduct.test.js",
       "meta": {},
       "tests": [
         {
-          "name": "Test delete product",
+          "name": "User can log in and add a product with a photo",
           "meta": {},
           "errs": [],
-          "durationMs": 34025,
+          "durationMs": 25187,
           "unstable": false,
           "screenshotPath": null,
           "skipped": false

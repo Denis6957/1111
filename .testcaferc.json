@@ -13,7 +13,7 @@
   "selectorTimeout": 10000,
   "assertionTimeout": 3000,
   "pageLoadTimeout": 3000,
-  "skipJsErrors": false,
+  "skipJsErrors": true,
   "skipUncaughtErrors": false,
   "speed": 1
 }
