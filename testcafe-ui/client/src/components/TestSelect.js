@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-function TestSelect({ onSelect, onNext }) {
-  const [tests, setTests] = useState([]);
+function TestSelect({ tests, onSelect, onNext }) { // Принимаем tests как пропс
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/tests')
-      .then(response => setTests(response.data))
-      .catch(error => console.error('Ошибка при получении списка тестов:', error));
+    setIsLoading(true); 
+    setIsLoading(false); // Сразу сбрасываем состояние загрузки
   }, []);
 
   return (
     <div>
       <label htmlFor="test-select">Выберите тест:</label>
-      <select 
+      <select
         id="test-select"
         onChange={(e) => onSelect(e.target.value)}
+        disabled={isLoading}
       >
-        {tests.map(test => (
-          <option key={test} value={test}>
-            {test}
-          </option>
-        ))}
+        {isLoading ? (
+          <option value="">Загрузка тестов...</option>
+        ) : (
+          tests.map(test => ( // Используем переданный список тестов (tests)
+            <option key={test} value={test}>
+              {test}
+            </option>
+          ))
+        )}
       </select>
 
-      <button onClick={onNext}>Далее</button>
+      <button onClick={onNext} disabled={isLoading}>
+        Далее
+      </button>
     </div>
   );
 }

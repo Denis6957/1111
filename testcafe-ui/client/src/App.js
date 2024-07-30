@@ -14,13 +14,14 @@ function App() {
   const [selectedTest, setSelectedTest] = useState(null);
   const [logs, setLogs] = useState([]);
   const [testResult, setTestResult] = useState(null);
+  const [tests, setTests] = useState([]); // Состояние для списка тестов
 
   // Получаем список тестов при монтировании компонента
   useEffect(() => {
     axios.get('/api/tests')
       .then(response => {
-        // Устанавливаем первый тест в списке как выбранный по умолчанию
-        setSelectedTest(response.data[0]);
+        setTests(response.data); // Сохраняем список тестов в состоянии
+        setSelectedTest(response.data[0]); // Выбираем первый тест по умолчанию
       })
       .catch(error => console.error('Ошибка при получении списка тестов:', error));
   }, []);
@@ -30,9 +31,9 @@ function App() {
     setLogs([]); // Очищаем логи перед запуском
     setTestResult(null); // Очищаем результаты предыдущего теста
 
-    axios.post('/api/run-tests', { 
-      browser: selectedBrowser, 
-      selectedTests: [selectedTest] 
+    axios.post('/api/run-tests', {
+      browser: selectedBrowser,
+      selectedTests: [selectedTest]
     })
       .then(() => {
         // ...
@@ -75,10 +76,10 @@ function App() {
   // Функция для возврата к началу
   const handleGoToStart = () => {
     setCurrentStep(1);
-    setSelectedBrowser('chrome'); 
+    setSelectedBrowser('chrome');
     setSelectedTest(null); // Сбрасываем выбранный тест
-    setLogs([]); 
-    setTestResult(null); 
+    setLogs([]);
+    setTestResult(null);
   };
 
   return (
@@ -87,7 +88,7 @@ function App() {
 
       {/* Отображение компонента в зависимости от текущего этапа */}
       {currentStep === 1 && (
-        <BrowserSelect 
+        <BrowserSelect
           selectedBrowser={selectedBrowser}
           onSelect={setSelectedBrowser}
           onNext={handleNextStep}
@@ -95,6 +96,7 @@ function App() {
       )}
       {currentStep === 2 && (
         <TestSelect
+          tests={tests} // Передаем список тестов в TestSelect
           selectedTest={selectedTest}
           onSelect={setSelectedTest}
           onNext={handleNextStep}
@@ -104,10 +106,10 @@ function App() {
         <TestRunning logs={logs} />
       )}
       {currentStep === 4 && (
-        <TestResult 
-          testResult={testResult} 
+        <TestResult
+          testResult={testResult}
           onGoToStart={handleGoToStart}
-          onRepeatTest={handleRepeatTest} 
+          onRepeatTest={handleRepeatTest}
         />
       )}
     </div>
