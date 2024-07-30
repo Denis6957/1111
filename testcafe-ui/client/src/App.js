@@ -18,10 +18,13 @@ function App() {
 
   // Получаем список тестов при монтировании компонента
   useEffect(() => {
-    axios.get('/api/tests')
+    // Измененный URL запроса к backend
+    axios.get('http://localhost:5000/api/tests') 
       .then(response => {
         setTests(response.data); // Сохраняем список тестов в состоянии
-        setSelectedTest(response.data[0]); // Выбираем первый тест по умолчанию
+        if (response.data.length > 0) {
+          setSelectedTest(response.data[0]); // Выбираем первый тест по умолчанию, если список не пустой
+        }
       })
       .catch(error => console.error('Ошибка при получении списка тестов:', error));
   }, []);
@@ -31,14 +34,19 @@ function App() {
     setLogs([]); // Очищаем логи перед запуском
     setTestResult(null); // Очищаем результаты предыдущего теста
 
-    axios.post('/api/run-tests', {
-      browser: selectedBrowser,
-      selectedTests: [selectedTest]
-    })
-      .then(() => {
-        // ...
+    // Проверяем, выбран ли тест
+    if (selectedTest) {
+      axios.post('/api/run-tests', {
+        browser: selectedBrowser,
+        selectedTests: [selectedTest]
       })
-      .catch(error => console.error('Ошибка при запуске тестов:', error));
+        .then(() => {
+          // ...
+        })
+        .catch(error => console.error('Ошибка при запуске тестов:', error));
+    } else {
+      console.error('Тест не выбран!');
+    }
   };
 
   // Подключение к Socket.IO серверу
